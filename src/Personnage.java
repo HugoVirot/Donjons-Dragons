@@ -1,11 +1,17 @@
-public class Personnage {
+abstract class Personnage {
     private String nom;
     private String image;
     private int niveauVie;
     private int niveauAttaque;
 
-    public Personnage () {
+    abstract void getEquipement();
 
+    public Personnage () {
+        this.niveauVie=5;
+    }
+
+    public Personnage(String nomChoisi) {
+        nom = nomChoisi;
     }
 
     public Personnage(String nomP, String imageP, int nivVie, int nivAttaque) {
