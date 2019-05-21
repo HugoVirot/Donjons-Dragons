@@ -26,6 +26,7 @@ public class DonjonsDragons {
                 g.setArme(a);
                 g.setBouclier(b);
                 listePersos.add(g);
+                System.out.println("Le personnage a bien été créé !");
             } else if (saisie == 3) {
                 Magicien m = creerMagicien();
                 Sort s = creerSort();
@@ -33,6 +34,7 @@ public class DonjonsDragons {
                 m.setSort(s);
                 m.setPhiltre(p);
                 listePersos.add(m);
+                System.out.println("Le personnage a bien été créé !");
             } else if (saisie == 4) {
                 count = 4;
             } else {
@@ -70,7 +72,7 @@ public class DonjonsDragons {
             System.out.println("Valeur saisie incorrecte");
         }*/
         Guerrier nouveauGuerrier = new Guerrier(nomG, imageG, nivVie, nivAttaque);
-        System.out.println("Tapez 1 pour afficher les infos, 2 pour les modifier, 3 pour revenir au menu");
+        System.out.println("Tapez 1 pour afficher les infos, 2 pour les modifier, 3 pour continuer");
         int saisie = sc.nextInt();
         int count2 = 0;
         while (count2 != 3) {
@@ -82,11 +84,13 @@ public class DonjonsDragons {
                 int saisie2 = sc.nextInt();
                 if (saisie2 == 1) {
                     System.out.println("Entrez le nouveau nom");
+                    sc.nextLine();
                     String nouveauNom = sc.nextLine();
                     nouveauGuerrier.setNom(nouveauNom);
                     System.out.println("Le nom a bien été modifié en : " + nouveauNom);
                 } else if (saisie2 == 2) {
                     System.out.println("Entrez la nouvelle image");
+                    sc.nextLine();
                     String nouvelleImage = sc.nextLine();
                     nouveauGuerrier.setImage(nouvelleImage);
                     System.out.println("L'image a bien été modifiée en : " + nouvelleImage);
@@ -183,11 +187,13 @@ public class DonjonsDragons {
                     int saisie2 = sc.nextInt();
                     if (saisie2 == 1) {
                         System.out.println("Entrez le nouveau nom");
+                        sc.nextLine();
                         String nouveauNom = sc.nextLine();
                         nouveauMagicien.setNom(nouveauNom);
                         System.out.println("Le nom a bien été modifié en : " + nouveauNom);
                     } else if (saisie2 == 2) {
                         System.out.println("Entrez la nouvelle image");
+                        sc.nextLine();
                         String nouvelleImage = sc.nextLine();
                         nouveauMagicien.setImage(nouvelleImage);
                         System.out.println("L'image a bien été modifiée en : " + nouvelleImage);

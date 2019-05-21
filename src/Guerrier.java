@@ -8,13 +8,9 @@ public class Guerrier extends Personnage {
     public Guerrier(String nomGuerrier){
     }
 
-    public Guerrier(String nomG, String imageG, int nivVie, int nivAttaque) {
-        System.out.println("Création d'un nouveau Guerrier réussie !");
-        nom = nomG;
-        image = imageG;
-        niveauVie = nivVie;
-        niveauAttaque = nivAttaque;
-        //System.out.println("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
+    public Guerrier (String nomG, String imageG, int nivVie, int nivAttaque) {
+    super(nomG, imageG, nivVie, nivAttaque);
+
     }
 
     public void setArme(Arme nouvelleArme) {

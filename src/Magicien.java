@@ -10,13 +10,9 @@ public class Magicien extends Personnage {
     public Magicien(String nomMagicien) {
     }
 
-    public Magicien(String nomM, String imageM, int nivVie, int nivAttaque) {
-        System.out.println("Création d'un nouveau Magicien réussie!");
-        nom = nomM;
-        image = imageM;
-        niveauVie = nivVie;
-        niveauAttaque = nivAttaque;
-        //System.out.println("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
+    public Magicien (String nomM, String imageM, int nivVie, int nivAttaque) {
+        super(nomM, imageM, nivVie, nivAttaque);
+
     }
 
     public void setSort(Sort nouveauSort) {

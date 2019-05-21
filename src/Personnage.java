@@ -1,8 +1,20 @@
 public class Personnage {
-    String nom;
-    String image;
-    int niveauVie;
-    int niveauAttaque;
+    private String nom;
+    private String image;
+    private int niveauVie;
+    private int niveauAttaque;
+
+    public Personnage () {
+
+    }
+
+    public Personnage(String nomP, String imageP, int nivVie, int nivAttaque) {
+        nom = nomP;
+        image = imageP;
+        niveauVie = nivVie;
+        niveauAttaque = nivAttaque;
+        //System.out.println("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
+    }
 
     public String getInfos() {
         return ("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
