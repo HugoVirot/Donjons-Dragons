@@ -1,19 +1,19 @@
 //import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Scanner;                         //import de la fonction scanner, pour récupérer les saisies
 
-public class DonjonsDragons {
+public class DonjonsDragons {                     //classe principale du programme
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {      //fonction principale
+        Scanner sc = new Scanner(System.in);       //activation du scanner
         int count = 0;
-        Personnage[] listePersos = new Personnage[10];
+        Personnage[] listePersos = new Personnage[10];        //création tableau personnages
         //ArrayList listePersos = new ArrayList();
         System.out.println("Bienvenue dans Donjons & Dragons !");
         while (count != 4) {
             System.out.println("***** Menu principal *****");
             System.out.println("Tapez 1 pour afficher la liste des personnages créés, 2 pour créer un Guerrier, 3 pour créer un Magicien, 4 pour quitter");
             int saisie = sc.nextInt();
-            if (saisie == 1) {
+            if (saisie == 1) {                                //si on tape 1, affichage liste personnages créés avec boucle
                 for (Personnage p : listePersos) {
                     if (p != null) {
                         String infos = p.toString();
@@ -23,7 +23,7 @@ public class DonjonsDragons {
                     } else {
                     }
                 }
-            } else if (saisie == 2) {
+            } else if (saisie == 2) {                 //si on tape 2, lancement création guerrier et ses accessoires
                 Guerrier g = creerGuerrier();
                 Arme a = creerArme();
                 Bouclier b = creerBouclier();
@@ -32,7 +32,7 @@ public class DonjonsDragons {
                 listePersos[0] = (g);
                 //listePersos.add(g);
                 System.out.println("Le personnage a bien été créé !");
-            } else if (saisie == 3) {
+            } else if (saisie == 3) {                 //si on tape 3, lancement création magicien et ses accessoires
                 Magicien m = creerMagicien();
                 Sort s = creerSort();
                 Philtre p = creerPhiltre();
@@ -41,7 +41,7 @@ public class DonjonsDragons {
                 listePersos[1] = (m);
                 //listePersos.add(m);
                 System.out.println("Le personnage a bien été créé !");
-            } else if (saisie == 4) {
+            } else if (saisie == 4) {                   //si on tape 4, fin du programme
                 count = 4;
             } else {
                 System.out.println("Saisie incorrecte !");
@@ -50,7 +50,7 @@ public class DonjonsDragons {
         System.out.println("Au revoir !");
     }
 
-    public static Guerrier creerGuerrier() {
+    public static Guerrier creerGuerrier() {                //méthode création guerrier
         Scanner sc = new Scanner(System.in);
         System.out.println("Création nouveau Guerrier");
 
@@ -73,9 +73,9 @@ public class DonjonsDragons {
         while (count2 != 3) {
             System.out.println("Tapez 1 pour afficher les infos, 2 pour les modifier, 3 pour continuer");
             int saisie = sc.nextInt();
-            if (saisie == 1) {
+            if (saisie == 1) {                                 //affichage infos avec la méthode getInfos()
                 System.out.println(nouveauGuerrier.getInfos());
-            } else if (saisie == 2) {
+            } else if (saisie == 2) {                          //menu de modification
                 System.out.println("Tapez 1 pour modifier le nom, 2 pour l'image, 3 pour la vie, 4 pour l'attaque, 5 pour quitter");
                 int saisie2 = sc.nextInt();
                 if (saisie2 == 1) {
@@ -103,16 +103,16 @@ public class DonjonsDragons {
                 } else {
                     System.out.println("Saisie incorrecte !");
                 }
-            } else if (saisie == 3) {
+            } else if (saisie == 3) {                 //pour continuer, on tape 3 et on quitte la boucle while
                 count2 = 3;
             } else {
                 System.out.println("Saisie incorrecte !");
             }
         }
-        return nouveauGuerrier;
+        return nouveauGuerrier;                     //on renvoie le nouveau guerrier créé
     }
 
-    public static Arme creerArme() {
+    public static Arme creerArme() {               //fonction de création de l'arme
         Scanner sc = new Scanner(System.in);
         System.out.println("Création nouvelle Arme");
 
@@ -127,7 +127,7 @@ public class DonjonsDragons {
         return nouvelleArme;
     }
 
-    public static Bouclier creerBouclier() {
+    public static Bouclier creerBouclier() {          //idem pour le bouclier
         Scanner sc = new Scanner(System.in);
         System.out.println("Création nouveau Bouclier");
 
@@ -139,7 +139,7 @@ public class DonjonsDragons {
     }
 
 
-    public static Magicien creerMagicien() {
+    public static Magicien creerMagicien() {        //fonction création magicien (idem guerrier sur le principe)
         Scanner sc = new Scanner(System.in);
         System.out.println("Création nouveau Magicien");
 
@@ -202,7 +202,7 @@ public class DonjonsDragons {
         return nouveauMagicien;
     }
 
-    public static Sort creerSort() {
+    public static Sort creerSort() {       //fonction création sort
         Scanner sc = new Scanner(System.in);
         System.out.println("Création nouveau Sort");
 
@@ -217,7 +217,7 @@ public class DonjonsDragons {
         return nouveauSort;
     }
 
-    public static Philtre creerPhiltre() {
+    public static Philtre creerPhiltre() {   //idem philtre
         Scanner sc = new Scanner(System.in);
         System.out.println("Création nouveau Philtre");
 
