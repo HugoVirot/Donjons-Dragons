@@ -10,7 +10,7 @@ public class Magicien extends Personnage {       //classe Magicien, qui hérite 
         super(nomMagicien);
     }
 
-    public Magicien (String nomM, String imageM, int nivVie, int nivAttaque) {  //constructeur avec les 4 paramètres
+    public Magicien (String nomM, String imageM, int nivVie, int nivAttaque) throws NomImageTropLongsException {  //constructeur avec les 4 paramètres
         super(nomM, imageM, nivVie, nivAttaque);
         System.out.println("Création d'un magicien réussie !");
     }

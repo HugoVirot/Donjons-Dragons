@@ -14,12 +14,21 @@ abstract class Personnage {         //classe abstraite dont héritent Guerrier e
         nom = nomChoisi;
     }
 
-    public Personnage(String nomP, String imageP, int nivVie, int nivAttaque) {   //constructeur avec les 4 paramètres
-        nom = nomP;
-        image = imageP;
-        niveauVie = nivVie;
-        niveauAttaque = nivAttaque;
-        //System.out.println("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
+    public Personnage(String nomP, String imageP, int nivVie, int nivAttaque)    //constructeur avec les 4 paramètres
+       throws NomImageTropLongsException
+        {
+            if (nomP.length() > 21)
+                throw new NomImageTropLongsException();
+            else if (imageP.length() > 21)
+                throw new NomImageTropLongsException();
+            else
+            {
+            nom = nomP;
+            image = imageP;
+            niveauVie = nivVie;
+            niveauAttaque = nivAttaque;
+            //System.out.println("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
+        }
     }
 
     public String getInfos() {                      //fonction "getter" pour récupérer les informations sur le personnage

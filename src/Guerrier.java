@@ -10,7 +10,7 @@ public class Guerrier extends Personnage {      //classe Guerrier, qui hérite d
         super(nomGuerrier);
     }
 
-    public Guerrier (String nomG, String imageG, int nivVie, int nivAttaque) { //constructeur avec les 4 paramètres
+    public Guerrier (String nomG, String imageG, int nivVie, int nivAttaque) throws NomImageTropLongsException { //constructeur avec les 4 paramètres
     super(nomG, imageG, nivVie, nivAttaque);
     System.out.println("Création d'un guerrier réussie !");
     }
