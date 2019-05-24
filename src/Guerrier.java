@@ -26,4 +26,20 @@ public class Guerrier extends Personnage {      //classe Guerrier, qui hérite d
     public void setBouclier(Bouclier nouveauBouclier) {
         bouclier = nouveauBouclier;
     }
+
+    public int getMinVie() {
+        return 5;
+    }
+
+    public int getMaxVie() {
+        return 10;
+    }
+
+    public int getMinAttaque() {
+        return 5;
+    }
+
+    public int getMaxAttaque() {
+        return 10;
+    }
 }

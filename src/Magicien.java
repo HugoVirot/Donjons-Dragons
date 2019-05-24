@@ -26,4 +26,20 @@ public class Magicien extends Personnage {       //classe Magicien, qui hérite 
     public void setPhiltre(Philtre nouveauPhiltre) {
         philtre = nouveauPhiltre;
     }
+
+    public int getMinVie() {
+        return 3;
+    }
+
+    public int getMaxVie() {
+        return 6;
+    }
+
+    public int getMinAttaque() {
+        return 8;
+    }
+
+    public int getMaxAttaque() {
+        return 16;
+    }
 }

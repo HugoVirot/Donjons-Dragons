@@ -1,11 +1,6 @@
-public class Arme {       //classe Arme avec attributs privés
-    private String nomArme;
-    private int nivAttaque;
-
-    public Arme(String nomA, int nivAttaqueA){       //constructeur avec 2 paramètres
-        System.out.println("Création d'une nouvelle Arme réussie!");
-        nomArme = nomA;
-        nivAttaque = nivAttaqueA;
-        System.out.println("Nom : " + nomArme + ", Attaque : " + nivAttaque);
+public class Arme extends MoyenAttaque {       //classe Arme avec attributs privés
+    public Arme (String nomArme,int attaqueArme){
+        super(nomArme, attaqueArme);
     }
+
 }

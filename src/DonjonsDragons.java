@@ -1,11 +1,24 @@
+/**
+ * Donjons & Dragons : création de personnages fantastiques
+ *
+ * @author Hugo Virot
+ * @version 1.6
+ * ce fichier DonjonsDragons.java est le programme principal
+ */
+
+
 //import java.util.ArrayList;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;                         //import de la fonction scanner, pour récupérer les saisies
+import java.util.Scanner;
 
 public class DonjonsDragons {                     //classe principale du programme
 
     public static void main(String[] args) {      //fonction principale
+        /**
+         * Cette méthode main comprend le déroulement du programme
+         */
+
         Scanner sc = new Scanner(System.in);       //activation du scanner
         int count = 0;
         Personnage[] listePersos = new Personnage[10];        //création tableau personnages
@@ -19,7 +32,7 @@ public class DonjonsDragons {                     //classe principale du program
                 "| (__/  )| (___) || )  \\  ||\\_)  )  | (___) || )  \\  |/\\____) |  (  \\/  \\  | (__/  )| ) \\ \\__| )   ( || (___) || (___) || )  \\  |/\\____) |\n" +
                 "(______/ (_______)|/    )_)(____/   (_______)|/    )_)\\_______)   \\___/\\/  (______/ |/   \\__/|/     \\|(_______)(_______)|/    )_)\\_______)\n" +
                 "                                                                                                                                          ");
-        while (count != 4) {
+        while (count != 3) {
             System.out.println(".___  ___.  _______ .__   __.  __    __     .______   .______       __  .__   __.   ______  __  .______      ___       __      \n" +
                     "|   \\/   | |   ____||  \\ |  | |  |  |  |    |   _  \\  |   _  \\     |  | |  \\ |  |  /      ||  | |   _  \\    /   \\     |  |     \n" +
                     "|  \\  /  | |  |__   |   \\|  | |  |  |  |    |  |_)  | |  |_)  |    |  | |   \\|  | |  ,----'|  | |  |_)  |  /  ^  \\    |  |     \n" +
@@ -27,8 +40,11 @@ public class DonjonsDragons {                     //classe principale du program
                     "|  |  |  | |  |____ |  |\\   | |  `--'  |    |  |      |  |\\  \\----.|  | |  |\\   | |  `----.|  | |  |     /  _____  \\  |  `----.\n" +
                     "|__|  |__| |_______||__| \\__|  \\______/     | _|      | _| `._____||__| |__| \\__|  \\______||__| | _|    /__/     \\__\\ |_______|\n" +
                     "                                                                                                                               ");
-            System.out.println("Tapez 1 pour afficher la liste des personnages créés, 2 pour créer un Guerrier, 3 pour créer un Magicien, 4 pour quitter");
+            System.out.println("Tapez 1 pour afficher la liste des personnages créés, 2 pour en créer un, 3 pour quitter");
             int saisie = 0;
+            /*
+             * @exception : ici, quand on saisit une lettre au lieu d'un chiffre, l'exception est prévue grâce au code ci-dessous : un message d'erreur s'affiche
+             */
             while (saisie == 0) {
                 try {
                     saisie = sc.nextInt();
@@ -44,7 +60,6 @@ public class DonjonsDragons {                     //classe principale du program
                     logicalSize++;
                 }
             }
-            System.out.println(logicalSize);
             if (saisie == 1) {                                  //si on tape 1, affichage liste personnages créés avec boucle
                 for (int i = 0; i < listePersos.length; i++) {      //la boucle parcourt listePersos sur toute sa longueur
                     Personnage p = listePersos[i];
@@ -91,25 +106,33 @@ public class DonjonsDragons {                     //classe principale du program
                             sc.nextLine();
                         }
                         if (saisie2 == 1) {
-                            System.out.println("Entrez le nouveau nom");
-                            sc.nextLine();
-                            String nouveauNom = sc.nextLine();
-                            listePersos[saisie4].setNom(nouveauNom);
+                            String nouveauNom = "";
+                            try {
+                                System.out.println("Entrez le nouveau nom");
+                                sc.nextLine();
+                                nouveauNom = sc.nextLine();
+                                listePersos[saisie4].setNom(nouveauNom);
+                            } catch (NomImageTropLongsException e) {
+                            }
                             System.out.println("Le nom a bien été modifié en : " + nouveauNom);
                         } else if (saisie2 == 2) {
-                            System.out.println("Entrez la nouvelle image");
-                            sc.nextLine();
-                            String nouvelleImage = sc.nextLine();
-                            listePersos[saisie4].setImage(nouvelleImage);
+                            String nouvelleImage = "";
+                            try {
+                                System.out.println("Entrez la nouvelle image");
+                                sc.nextLine();
+                                nouvelleImage = sc.nextLine();
+                                listePersos[saisie4].setImage(nouvelleImage);
+                            } catch (NomImageTropLongsException e) {
+                            }
                             System.out.println("L'image a bien été modifiée en : " + nouvelleImage);
                         } else if (saisie2 == 3) {
-                            System.out.println("Nouvelle attribution aléatoire des points de vie (entre 5 et 10)");
-                            int nouvelleVie = 5 + (int) (Math.random() * ((10 - 5) + 1));
-                            System.out.println("Les points de vie ont bien été modifiés en : " + nouvelleVie);
+                            System.out.println("Nouvelle attribution aléatoire des points de vie ");
+                            listePersos[saisie4].initVie();
+                            System.out.println("Les points de vie ont bien été modifiés en : " + listePersos[saisie4].getVie());
                         } else if (saisie2 == 4) {
                             System.out.println("Nouvelle attribution aléatoire du niveau d'attaque (entre 5 et 10)");
-                            int nouvelleAttaque = 5 + (int) (Math.random() * ((10 - 5) + 1));
-                            System.out.println("Le niveau d'attaque a bien été modifié en : " + nouvelleAttaque);
+                            listePersos[saisie4].initAttaque();
+                            System.out.println("Le niveau d'attaque a bien été modifié en : " + listePersos[saisie4].getAttaque());
                         } else if (saisie2 == 5) {
 
                         } else {
@@ -135,26 +158,13 @@ public class DonjonsDragons {                     //classe principale du program
                     }
                 } else {
                 }
-            } else if (saisie == 2) {                 //si on tape 2, lancement création guerrier et ses accessoires
-                Guerrier g = creerGuerrier();
-                Arme a = creerArme();
-                Bouclier b = creerBouclier();
-                g.setArme(a);
-                g.setBouclier(b);
-                listePersos[logicalSize] = (g);
-                //listePersos.add(g);
-                System.out.println("Le personnage a bien été créé !");
-            } else if (saisie == 3) {                 //si on tape 3, lancement création magicien et ses accessoires
-                Magicien m = creerMagicien();
-                Sort s = creerSort();
-                Philtre p = creerPhiltre();
-                m.setSort(s);
-                m.setPhiltre(p);
-                listePersos[logicalSize] = (m);
+            } else if (saisie == 2) {                                 //si on tape 2, lancement création personnage
+                Personnage nouveauPerso = creerPerso();
+                listePersos[logicalSize] = nouveauPerso;
                 //listePersos.add(m);
                 System.out.println("Le personnage a bien été créé !");
-            } else if (saisie == 4) {                   //si on tape 4, fin du programme
-                count = 4;
+            } else if (saisie == 3) {                   //si on tape 3, fin du programme
+                count = 3;
             } else {
                 System.out.println("Saisie incorrecte !");
             }
@@ -162,34 +172,48 @@ public class DonjonsDragons {                     //classe principale du program
         System.out.println("Au revoir !");
     }
 
-    public static Guerrier creerGuerrier() {                //méthode création guerrier
-            Scanner sc = new Scanner(System.in);
-            Guerrier nouveauGuerrier = null;
+    public static Personnage creerPerso() {
+        Scanner sc = new Scanner(System.in);
+        Personnage nouveauPerso = null;
+        int type = 0;
 
-            while (nouveauGuerrier == null) {
+        while (nouveauPerso == null) {
 
-            System.out.println("Création nouveau Guerrier");
-
-            System.out.println("Entrez un nom");
-            String nomG = sc.nextLine();
-
-            System.out.println("Choisissez une image");
-            String imageG = sc.nextLine();
-
-            System.out.println("Attribution aléatoire des points de vie (entre 5 et 10)");
-            int nivVie = 5 + (int) (Math.random() * ((10 - 5) + 1));
-            System.out.println("Vous avez obtenu : " + nivVie + " points de vie !");
-
-            System.out.println("Attribution aléatoire du niveau d'attaque (entre 5 et 10)");
-            int nivAttaque = 5 + (int) (Math.random() * ((10 - 5) + 1));
-            System.out.println("Vous avez obtenu : " + nivAttaque + " points d'attaque !");
+            System.out.println("Tapez 1 pour créer un guerrier, 2 pour un magicien, 3 pour revenir au menu");
+            type = sc.nextInt();
+            if (type == 1) {
+                nouveauPerso = new Guerrier();
+            } else if (type == 2) {
+                nouveauPerso = new Magicien();
+            } else if (type == 3) {
+                break;
+            } else {
+            }
 
             try {
-                nouveauGuerrier = new Guerrier(nomG, imageG, nivVie, nivAttaque);
+                System.out.println("Entrez un nom");
+                sc.nextLine();
+                String nomP = sc.nextLine();
+                nouveauPerso.setNom(nomP);
             } catch (NomImageTropLongsException e) {
-                System.out.println(e.getMessage());
             }
-        }
+
+            try {
+                System.out.println("Choisissez une image");
+                String imageP = sc.nextLine();
+                nouveauPerso.setImage(imageP);
+            } catch (NomImageTropLongsException e) {
+            }
+
+            System.out.println("Attribution aléatoire des points de vie pour " + nouveauPerso.getClass() + " (entre " + nouveauPerso.getMinVie() + " et " + nouveauPerso.getMaxVie() + ")");
+            nouveauPerso.initVie();
+            System.out.println("Vous avez obtenu : " + nouveauPerso.getVie() + " points de vie !");
+
+            System.out.println("Attribution aléatoire du niveau d'attaque pour " + nouveauPerso.getClass() + " (entre " + nouveauPerso.getMinAttaque() + " et " + nouveauPerso.getMaxAttaque() + ")");
+            nouveauPerso.initAttaque();
+            System.out.println("Vous avez obtenu : " + nouveauPerso.getAttaque() + " points d'attaque !");
+
+        }                 //affichage / modification des infos
         int count2 = 0;
         while (count2 != 3) {
             System.out.println("Tapez 1 pour afficher les infos, 2 pour les modifier, 3 pour continuer");
@@ -203,30 +227,38 @@ public class DonjonsDragons {                     //classe principale du program
                 sc.nextLine();
             }
             if (saisie == 1) {                                 //affichage infos avec la méthode getInfos()
-                System.out.println(nouveauGuerrier.getInfos());
+                System.out.println(nouveauPerso.getInfos());
             } else if (saisie == 2) {                          //menu de modification
                 System.out.println("Tapez 1 pour modifier le nom, 2 pour l'image, 3 pour la vie, 4 pour l'attaque, 5 pour quitter");
                 int saisie2 = sc.nextInt();
                 if (saisie2 == 1) {
-                    System.out.println("Entrez le nouveau nom");
-                    sc.nextLine();
-                    String nouveauNom = sc.nextLine();
-                    nouveauGuerrier.setNom(nouveauNom);
+                    String nouveauNom = "";
+                    try {
+                        System.out.println("Entrez le nouveau nom");
+                        sc.nextLine();
+                        nouveauNom = sc.nextLine();
+                        nouveauPerso.setNom(nouveauNom);
+                    } catch (NomImageTropLongsException e) {
+                    }
                     System.out.println("Le nom a bien été modifié en : " + nouveauNom);
                 } else if (saisie2 == 2) {
-                    System.out.println("Entrez la nouvelle image");
-                    sc.nextLine();
-                    String nouvelleImage = sc.nextLine();
-                    nouveauGuerrier.setImage(nouvelleImage);
+                    String nouvelleImage = "";
+                    try {
+                        System.out.println("Entrez la nouvelle image");
+                        sc.nextLine();
+                        nouvelleImage = sc.nextLine();
+                        nouveauPerso.setImage(nouvelleImage);
+                    } catch (NomImageTropLongsException e) {
+                    }
                     System.out.println("L'image a bien été modifiée en : " + nouvelleImage);
                 } else if (saisie2 == 3) {
-                    System.out.println("Nouvelle attribution aléatoire des points de vie (entre 5 et 10)");
-                    int nouvelleVie = 5 + (int) (Math.random() * ((10 - 5) + 1));
-                    System.out.println("Les points de vie ont bien été modifiés en : " + nouvelleVie);
+                    System.out.println("Nouvelle attribution aléatoire des points de vie");
+                    nouveauPerso.initVie();
+                    System.out.println("Les points de vie ont bien été modifiés en : " + nouveauPerso.getVie());
                 } else if (saisie2 == 4) {
-                    System.out.println("Nouvelle attribution aléatoire du niveau d'attaque (entre 5 et 10)");
-                    int nouvelleAttaque = 5 + (int) (Math.random() * ((10 - 5) + 1));
-                    System.out.println("Le niveau d'attaque a bien été modifié en : " + nouvelleAttaque);
+                    System.out.println("Nouvelle attribution aléatoire du niveau d'attaque");
+                    nouveauPerso.initAttaque();
+                    System.out.println("Le niveau d'attaque a bien été modifié en : " + nouveauPerso.getAttaque());
                 } else if (saisie2 == 5) {
                     break;
                 } else {
@@ -238,148 +270,22 @@ public class DonjonsDragons {                     //classe principale du program
                 System.out.println("Saisie incorrecte !");
             }
         }
-        return nouveauGuerrier;                     //on renvoie le nouveau guerrier créé
-    }
+        MoyenAttaque nouveauMoyenAttaque = null;
 
-    public static Arme creerArme() {               //fonction de création de l'arme
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Création nouvelle Arme");
+        System.out.println("Création Arme/Sort : choississez un nom");
+        String nomMA = sc.nextLine();
+        System.out.println("Attribution aléatoire des points d'attaque, entre 5 et 10.");
+        int niveauAttaqueMA = 5 + (int) (Math.random() * ((10 - 5) + 1));
+        System.out.println("Votre Arme/Sort a obtenu une attaque de : " + niveauAttaqueMA);
 
-        System.out.println("Entrez un nom");
-        String nomA = sc.nextLine();
-
-        System.out.println("Attribution aléatoire du niveau d'attaque (entre 3 et 7)");
-        int nivAttaqueA = 3 + (int) (Math.random() * ((7 - 3) + 1));
-        System.out.println("Votre arme a une force d'attaque de : " + nivAttaqueA + " !");
-
-        Arme nouvelleArme = new Arme(nomA, nivAttaqueA);
-        return nouvelleArme;
-    }
-
-    public static Bouclier creerBouclier() {          //idem pour le bouclier
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Création nouveau Bouclier");
-
-        System.out.println("Entrez un nom");
-        String nomB = sc.nextLine();
-
-        Bouclier nouveauBouclier = new Bouclier(nomB);
-        return nouveauBouclier;
-    }
-
-
-    public static Magicien creerMagicien() {        //fonction création magicien (idem guerrier sur le principe)
-        Scanner sc = new Scanner(System.in);
-        Magicien nouveauMagicien = null;
-
-        while (nouveauMagicien == null) {
-
-            System.out.println("Création nouveau Magicien");
-
-            System.out.println("Entrez un nom");
-            String nomM = sc.nextLine();
-
-            System.out.println("Choisissez une image");
-            String imageM = sc.nextLine();
-
-            System.out.println("Attribution aléatoire des points de vie (entre 3 et 6)");
-            int nivVie = 3 + (int) (Math.random() * ((6 - 3) + 1));
-            System.out.println("Vous avez obtenu : " + nivVie + " points de vie !");
-
-            System.out.println("Attribution aléatoire du niveau d'attaque (entre 8 et 15)");
-            int nivAttaque = 8 + (int) (Math.random() * ((15 - 8) + 1));
-            System.out.println("Vous avez obtenu : " + nivAttaque + " points d'attaque !");
-
-            try {
-                nouveauMagicien = new Magicien(nomM, imageM, nivVie, nivAttaque);
-            } catch (NomImageTropLongsException e) {
-                System.out.println(e.getMessage());
-            }
+        if (type == 1){
+            nouveauMoyenAttaque = new Arme(nomMA, niveauAttaqueMA);
+            nouveauPerso.setMoyenAttaque(nouveauMoyenAttaque);
+        } else if (type == 2) {
+            nouveauMoyenAttaque = new Sort(nomMA, niveauAttaqueMA);
+            nouveauPerso.setMoyenAttaque(nouveauMoyenAttaque);
         }
-        int count2 = 0;
-        while (count2 != 3) {
-            System.out.println("Tapez 1 pour afficher les infos, 2 pour les modifier, 3 pour continuer");
-            int saisie = 0;
-            while (saisie == 0) {
-                try {
-                    saisie = sc.nextInt();
-                } catch (InputMismatchException e) {
-                    System.out.println("Erreur ! Vous avez saisi une lettre au lieu d'un chiffre !");
-                }
-                sc.nextLine();
-            }
-            if (saisie == 1) {
-                System.out.println(nouveauMagicien.getInfos());
-            } else if (saisie == 2) {
-                int count3 = 0;
-                System.out.println("Tapez 1 pour modifier le nom, 2 pour l'image, 3 pour la vie, 4 pour l'attaque, 5 pour quitter");
-                int saisie2 = sc.nextInt();
-                while (saisie2 == 0) {
-                    try {
-                        saisie2 = sc.nextInt();
-                    } catch (InputMismatchException e) {
-                        System.out.println("Erreur ! Vous avez saisi une lettre au lieu d'un chiffre !");
-                    }
-                    sc.nextLine();
-                }
-                if (saisie2 == 1) {
-                    System.out.println("Entrez le nouveau nom");
-                    sc.nextLine();
-                    String nouveauNom = sc.nextLine();
-                    nouveauMagicien.setNom(nouveauNom);
-                    System.out.println("Le nom a bien été modifié en : " + nouveauNom);
-                } else if (saisie2 == 2) {
-                    System.out.println("Entrez la nouvelle image");
-                    sc.nextLine();
-                    String nouvelleImage = sc.nextLine();
-                    nouveauMagicien.setImage(nouvelleImage);
-                    System.out.println("L'image a bien été modifiée en : " + nouvelleImage);
-                } else if (saisie2 == 3) {
-                    System.out.println("Nouvelle attribution aléatoire des points de vie (entre 5 et 10)");
-                    int nouvelleVie = 3 + (int) (Math.random() * ((6 - 3) + 1));
-                    System.out.println("Les points de vie ont bien été modifiés en : " + nouvelleVie);
-                } else if (saisie2 == 4) {
-                    System.out.println("Nouvelle attribution aléatoire du niveau d'attaque (entre 8 et 15)");
-                    int nouvelleAttaque = 8 + (int) (Math.random() * ((15 - 8) + 1));
-                    System.out.println("Le niveau d'attaque a bien été modifié en : " + nouvelleAttaque);
-                } else if (saisie2 == 5) {
-                    break;
-                } else {
-                    System.out.println("Saisie incorrecte !");
-                }
-            } else if (saisie == 3) {
-                count2 = 3;
-            } else {
-                System.out.println("Saisie incorrecte !");
-            }
-        }
-        return nouveauMagicien;
-    }
-
-    public static Sort creerSort() {       //fonction création sort
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Création nouveau Sort");
-
-        System.out.println("Entrez un nom");
-        String nomS = sc.nextLine();
-
-        System.out.println("Attribution aléatoire du niveau d'attaque (entre 2 et 9)");
-        int nivAttaqueS = 2 + (int) (Math.random() * ((9 - 2) + 1));
-        System.out.println("Votre sort a une force d'attaque de : " + nivAttaqueS + " !");
-
-        Sort nouveauSort = new Sort(nomS, nivAttaqueS);
-        return nouveauSort;
-    }
-
-    public static Philtre creerPhiltre() {   //idem philtre
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Création nouveau Philtre");
-
-        System.out.println("Entrez un nom");
-        String nomP = sc.nextLine();
-
-        Philtre nouveauPhiltre = new Philtre(nomP);
-        return nouveauPhiltre;
+        return nouveauPerso;                     //on renvoie le nouveau guerrier créé
     }
 }
 
