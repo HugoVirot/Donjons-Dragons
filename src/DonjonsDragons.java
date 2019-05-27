@@ -12,9 +12,12 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class DonjonsDragons {                     //classe principale du programme
+public class DonjonsDragons {
+    /**
+     * classe principale du programme
+     */
 
-    public static void main(String[] args) {      //fonction principale
+    public static void main(String[] args) {
         /**
          * Cette méthode main comprend le déroulement du programme
          */
@@ -60,8 +63,11 @@ public class DonjonsDragons {                     //classe principale du program
                     logicalSize++;
                 }
             }
-            if (saisie == 1) {                                  //si on tape 1, affichage liste personnages créés avec boucle
-                for (int i = 0; i < listePersos.length; i++) {      //la boucle parcourt listePersos sur toute sa longueur
+            /** si on tape 1, affichage liste personnages créés avec boucle
+             * *la boucle parcourt listePersos sur toute sa longueur
+             */
+            if (saisie == 1) {
+                for (int i = 0; i < listePersos.length; i++) {
                     Personnage p = listePersos[i];
                     if (p != null) {
                         String infos = p.toString();
@@ -71,6 +77,9 @@ public class DonjonsDragons {                     //classe principale du program
                     } else {
                     }
                 }
+                /**
+                 * Menu modification / suppression persos / retour
+                 */
                 System.out.println("Pour modifier un perso, tapez 1. Pour en supprimer un, tapez 2. Pour revenir à l'accueil, tapez n'importe quel chiffre.");
                 int saisie3 = 0;
                 while (saisie3 == 0) {
@@ -95,6 +104,9 @@ public class DonjonsDragons {                     //classe principale du program
                     if (saisie4 > listePersos.length - 1) {
                         System.out.println("Saisie incorrecte");
                     } else {
+                        /**
+                         * Menu modification caractéristiques personnage
+                         */
                         System.out.println("Tapez 1 pour modifier le nom, 2 pour l'image, 3 pour la vie, 4 pour l'attaque, 5 pour quitter");
                         int saisie2 = sc.nextInt();
                         while (saisie2 == 0) {
@@ -163,7 +175,7 @@ public class DonjonsDragons {                     //classe principale du program
                 listePersos[logicalSize] = nouveauPerso;
                 //listePersos.add(m);
                 System.out.println("Le personnage a bien été créé !");
-            } else if (saisie == 3) {                   //si on tape 3, fin du programme
+            } else if (saisie == 3) {
                 count = 3;
             } else {
                 System.out.println("Saisie incorrecte !");
@@ -172,6 +184,11 @@ public class DonjonsDragons {                     //classe principale du program
         System.out.println("Au revoir !");
     }
 
+    /**
+     * fonction création personnage (guerrier ou magicien à la fois)
+     *
+     * @return nouveauPerso
+     */
     public static Personnage creerPerso() {
         Scanner sc = new Scanner(System.in);
         Personnage nouveauPerso = null;
@@ -213,7 +230,10 @@ public class DonjonsDragons {                     //classe principale du program
             nouveauPerso.initAttaque();
             System.out.println("Vous avez obtenu : " + nouveauPerso.getAttaque() + " points d'attaque !");
 
-        }                 //affichage / modification des infos
+        }
+        /**
+         *  affichage / modification des infos
+         */
         int count2 = 0;
         while (count2 != 3) {
             System.out.println("Tapez 1 pour afficher les infos, 2 pour les modifier, 3 pour continuer");
@@ -226,9 +246,15 @@ public class DonjonsDragons {                     //classe principale du program
                 }
                 sc.nextLine();
             }
-            if (saisie == 1) {                                 //affichage infos avec la méthode getInfos()
+            if (saisie == 1) {
+                /**
+                 * affichage infos avec la méthode getInfos()
+                 */
                 System.out.println(nouveauPerso.getInfos());
-            } else if (saisie == 2) {                          //menu de modification
+            } else if (saisie == 2) {
+                /**
+                 * menu de modification
+                 */
                 System.out.println("Tapez 1 pour modifier le nom, 2 pour l'image, 3 pour la vie, 4 pour l'attaque, 5 pour quitter");
                 int saisie2 = sc.nextInt();
                 if (saisie2 == 1) {
@@ -264,12 +290,18 @@ public class DonjonsDragons {                     //classe principale du program
                 } else {
                     System.out.println("Saisie incorrecte !");
                 }
-            } else if (saisie == 3) {                 //pour continuer, on tape 3 et on quitte la boucle while
+            } else if (saisie == 3) {
+                /**
+                 * pour continuer, on tape 3 et on quitte la boucle while
+                 */
                 count2 = 3;
             } else {
                 System.out.println("Saisie incorrecte !");
             }
         }
+        /**
+         * Création moyen d'attaque du perso
+         */
         MoyenAttaque nouveauMoyenAttaque = null;
 
         System.out.println("Création Arme/Sort : choississez un nom");
@@ -278,14 +310,14 @@ public class DonjonsDragons {                     //classe principale du program
         int niveauAttaqueMA = 5 + (int) (Math.random() * ((10 - 5) + 1));
         System.out.println("Votre Arme/Sort a obtenu une attaque de : " + niveauAttaqueMA);
 
-        if (type == 1){
+        if (type == 1) {
             nouveauMoyenAttaque = new Arme(nomMA, niveauAttaqueMA);
             nouveauPerso.setMoyenAttaque(nouveauMoyenAttaque);
         } else if (type == 2) {
             nouveauMoyenAttaque = new Sort(nomMA, niveauAttaqueMA);
             nouveauPerso.setMoyenAttaque(nouveauMoyenAttaque);
         }
-        return nouveauPerso;                     //on renvoie le nouveau guerrier créé
+        return nouveauPerso;
     }
 }
 
