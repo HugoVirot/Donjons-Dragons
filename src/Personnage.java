@@ -6,14 +6,29 @@ abstract class Personnage {
     private String image;
     private int niveauVie;
     private int niveauAttaque;
-    private MoyenAttaque moyenattaque;
-    private MoyenDefense moyendefense;
+    MoyenAttaque moyenAttaquePerso;
+    MoyenDefense moyenDefensePerso;
+    private boolean selected;
 
     abstract void getEquipement();
+
+    public boolean setSelected() {
+        selected = true;
+        return selected;
+    }
+
+    public boolean getSelected() {
+        return selected;
+    }
 
     /**
      * méthode abstraite redéfinie dans les enfants Guerrier et Magicien
      */
+
+    public String getMoyenAttaqueDefense() {
+        return ("Ce personnage attaque avec " + moyenAttaquePerso + "et se défend grâce à " + moyenDefensePerso);
+    }
+
 
     public Personnage() {
         /**
@@ -47,12 +62,13 @@ abstract class Personnage {
             image = imageP;
             niveauVie = nivVie;
             niveauAttaque = nivAttaque;
+            selected = true;
             //System.out.println("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
         }
     }
 
     public String getInfos() {//fonction "getter" pour récupérer les informations sur le personnage
-        return ("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque);
+        return ("Nom : " + nom + ", Image : " + image + ", Vie : " + niveauVie + ", Attaque : " + niveauAttaque + ", Sélectionné ? " + selected);
     }
 
     public int getVie() {
@@ -92,6 +108,16 @@ abstract class Personnage {
         niveauVie = getMinVie() + (int) (Math.random() * ((getMaxVie() - getMinVie()) + 1));
     }
 
+    public int setVie(int nouveauNiveauVie) {
+        niveauVie = nouveauNiveauVie;
+        return niveauVie;
+    }
+
+    public int setAttaque(int nouveauNiveauAttaque) {
+        niveauAttaque = nouveauNiveauAttaque;
+        return niveauAttaque;
+    }
+
     public void initAttaque() {
         /**
          * fonction qui initialise le niveau d'attaque
@@ -103,12 +129,17 @@ abstract class Personnage {
         niveauAttaque = attaqueMin + (int) (Math.random() * ((attaqueMax - attaqueMin) + 1));
     }
 
-    public void setMoyenAttaque(MoyenAttaque moyenAttaque) {
-        moyenattaque = moyenAttaque;
+    /*public void setVie(int niveauVie, int nouveauNiveauVie){
+        niveauVie = nouveauNiveauVie;
+        return niveauVie;
+    }*/
+
+    public void setMoyenAttaque(MoyenAttaque nouveauMoyenAttaque) {
+        moyenAttaquePerso = nouveauMoyenAttaque;
     }
 
-    public void setMoyenDefense(MoyenDefense moyenDefense) {
-        moyendefense = moyenDefense;
+    public void setMoyenDefense(MoyenDefense nouveauMoyenDefense) {
+        moyenDefensePerso = nouveauMoyenDefense;
     }
 
     public abstract int getMinVie();

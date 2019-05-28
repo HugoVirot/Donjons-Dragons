@@ -35,7 +35,7 @@ public class Magicien extends Personnage {
         /**méthode abstraite de personnage, redéfinie
          *
          */
-        System.out.println("Sort : " + sort + ", Philtre : " + philtre);
+        System.out.println("Sort : " + this.sort + ", Philtre : " + this.philtre);
     }
 
     public void setSort(Sort nouveauSort) {

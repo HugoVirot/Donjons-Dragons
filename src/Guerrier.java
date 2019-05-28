@@ -1,4 +1,4 @@
-public class Guerrier extends Personnage {
+public class Guerrier extends Personnage implements Event {
     /**
      * classe Guerrier, qui hérite de Personnage
      * ses attributs sont privés (non modifiables de l'extérieur)
@@ -6,6 +6,8 @@ public class Guerrier extends Personnage {
 
     private Arme arme;
     private Bouclier bouclier;
+
+    public void Action(Personnage perso) {}
 
     public Guerrier() {
         /** constructeur basique sans paramètre, qui fait appel au même constructeur
